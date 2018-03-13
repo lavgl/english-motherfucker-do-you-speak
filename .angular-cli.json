@@ -27,6 +27,7 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
+      "buildUrl": "./"
     }
   ],
   "e2e": {
