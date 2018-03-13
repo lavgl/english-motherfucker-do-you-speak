@@ -6,9 +6,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "test": "ng test",
+    "test": "ng test --single-run",
+    "test:watch": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "test:e2e": "ng e2e",
+    "test:all": "npm run test && npm run test:e2e"
   },
   "private": true,
   "dependencies": {
