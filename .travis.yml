@@ -1,0 +1,16 @@
+dist: trusty
+language: node_js
+node_js:
+  - 9
+cache:
+  directories:
+    - node_modules
+before_deploy:
+  - npm run build
+deploy:
+  provider: pages
+  local-dir: 'build'
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  on:
+    branch: master
