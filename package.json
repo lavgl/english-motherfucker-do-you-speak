@@ -11,8 +11,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-jest": "^23.0.0-alpha.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest-environment-enzyme": "^6.0.0",
+    "jest-enzyme": "^6.0.0"
+  }
 }
