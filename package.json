@@ -11,15 +11,34 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "babel-jest": "^23.0.0-alpha.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-cli": "^23.0.0-alpha.0",
     "jest-environment-enzyme": "^6.0.0",
     "jest-enzyme": "^6.0.0",
     "prettier": "1.11.1"
+  },
+  "jest": {
+    "projects": [
+      {
+        "displayName": "jsdom",
+        "testMatch": ["<rootDir>/**/*.spec.js"],
+        "moduleNameMapper": {
+          ".+\\.(svg|css)": "identity-obj-proxy"
+        },
+        "setupTestFrameworkScriptFile": "<rootDir>/test/helpers/setupEnzyme.js"
+      },
+      {
+        "displayName": "e2e",
+        "testMatch": ["<rootDir>/test/e2e/**/*.e2e.js"]
+      }
+    ]
   }
 }
