@@ -4,16 +4,20 @@
   "private": true,
   "homepage": "https://lavgl.github.io/english-motherfucker-do-you-speak",
   "dependencies": {
+    "mobx": "^4.1.0",
+    "mobx-react": "^5.0.0",
     "react": "^16.2.0",
+    "react-app-rewire-hot-loader": "^1.0.0",
+    "react-app-rewire-mobx": "^1.0.7",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "eject": "react-scripts eject"
+    "eject": "react-app-rewired eject"
   },
   "devDependencies": {
     "babel-jest": "^23.0.0-alpha.0",
@@ -25,13 +29,16 @@
     "jest-enzyme": "^6.0.0",
     "jest-puppeteer-preset": "^2.0.1",
     "prettier": "1.11.1",
-    "puppeteer": "^1.2.0"
+    "puppeteer": "^1.2.0",
+    "react-app-rewired": "^1.5.0"
   },
   "jest": {
     "projects": [
       {
         "displayName": "jsdom",
-        "testMatch": ["<rootDir>/**/*.spec.js"],
+        "testMatch": [
+          "<rootDir>/**/*.spec.js"
+        ],
         "moduleNameMapper": {
           ".+\\.(svg|css)": "identity-obj-proxy"
         },
@@ -39,7 +46,9 @@
       },
       {
         "displayName": "e2e",
-        "testMatch": ["<rootDir>/test/e2e/**/*.e2e.js"],
+        "testMatch": [
+          "<rootDir>/test/e2e/**/*.e2e.js"
+        ],
         "testEnvironment": "jest-environment-puppeteer",
         "setupTestFrameworkScriptFile": "expect-puppeteer"
       }
