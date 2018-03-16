@@ -40,12 +40,11 @@
       {
         "displayName": "e2e",
         "testMatch": ["<rootDir>/test/e2e/**/*.e2e.js"],
-        "globalSetup": "jest-environment-puppeteer/setup",
-        "globalTeardown": "jest-environment-puppeteer/teardown",
         "testEnvironment": "jest-environment-puppeteer",
         "setupTestFrameworkScriptFile": "expect-puppeteer"
       }
     ],
-    "preset": "jest-puppeteer-preset"
+    "globalSetup": "jest-environment-puppeteer/setup",
+    "globalTeardown": "jest-environment-puppeteer/teardown"
   }
 }
