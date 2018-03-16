@@ -1,18 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "mobx-react";
+import DevTools from "mobx-react-devtools";
 import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-import counterStore from "./stores/counter.store";
+import stores from "./stores";
 
-const stores = { counterStore };
+const renderDevTools = () => {
+  if (process.env.NODE_ENV !== "development") return null;
 
-ReactDOM.render(
-  <Provider {...stores}>
-    <App />
-  </Provider>,
-  document.getElementById("root"),
+  return <DevTools position={{ top: 0, right: 0 }} />;
+};
+
+const Root = () => (
+  <div>
+    <Provider {...stores}>
+      <App />
+    </Provider>
+    {renderDevTools()}
+  </div>
 );
+
+ReactDOM.render(<Root />, document.getElementById("root"));
 registerServiceWorker();
