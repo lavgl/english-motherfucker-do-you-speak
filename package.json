@@ -23,7 +23,9 @@
     "jest-cli": "^23.0.0-alpha.0",
     "jest-environment-enzyme": "^6.0.0",
     "jest-enzyme": "^6.0.0",
-    "prettier": "1.11.1"
+    "jest-puppeteer-preset": "^2.0.1",
+    "prettier": "1.11.1",
+    "puppeteer": "^1.2.0"
   },
   "jest": {
     "projects": [
@@ -37,8 +39,13 @@
       },
       {
         "displayName": "e2e",
-        "testMatch": ["<rootDir>/test/e2e/**/*.e2e.js"]
+        "testMatch": ["<rootDir>/test/e2e/**/*.e2e.js"],
+        "globalSetup": "jest-environment-puppeteer/setup",
+        "globalTeardown": "jest-environment-puppeteer/teardown",
+        "testEnvironment": "jest-environment-puppeteer",
+        "setupTestFrameworkScriptFile": "expect-puppeteer"
       }
-    ]
+    ],
+    "preset": "jest-puppeteer-preset"
   }
 }

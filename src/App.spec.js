@@ -4,4 +4,5 @@ import App from "./App";
 
 it("renders without crashing", () => {
   const subject = shallow(<App />);
+  expect(subject).toHaveLength(1);
 });
