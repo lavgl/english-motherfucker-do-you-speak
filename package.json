@@ -2,7 +2,7 @@
   "name": "english-motherfucker-do-you-speak",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lavgl.github.io/english-motherfucker-do-you-speak",
+  "homepage": "",
   "dependencies": {
     "mobx": "^4.1.0",
     "mobx-react": "^5.0.0",
@@ -16,8 +16,9 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "pretest": "npm run build",
+    "test": "PORT=3333 jest",
+    "test:watch": "WATCH=true PORT=3000 jest --watch",
     "eject": "react-app-rewired eject"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "express": "^4.16.3",
     "identity-obj-proxy": "^3.0.0",
     "jest-cli": "^23.0.0-alpha.0",
     "jest-environment-enzyme": "^6.0.0",
@@ -33,7 +35,8 @@
     "node-sass": "^4.7.2",
     "prettier": "1.11.1",
     "puppeteer": "^1.2.0",
-    "react-app-rewire-css-modules": "github:codebandits/react-app-rewire-css-modules",
+    "react-app-rewire-css-modules":
+      "github:codebandits/react-app-rewire-css-modules",
     "react-app-rewired": "^1.5.0",
     "sass-loader": "^6.0.7"
   },
@@ -41,9 +44,7 @@
     "projects": [
       {
         "displayName": "jsdom",
-        "testMatch": [
-          "<rootDir>/**/*.spec.js"
-        ],
+        "testMatch": ["<rootDir>/**/*.spec.js"],
         "moduleNameMapper": {
           ".+\\.(svg|css|scss)": "identity-obj-proxy"
         },
@@ -51,9 +52,7 @@
       },
       {
         "displayName": "e2e",
-        "testMatch": [
-          "<rootDir>/test/e2e/**/*.e2e.js"
-        ],
+        "testMatch": ["<rootDir>/test/e2e/**/*.e2e.js"],
         "testEnvironment": "jest-environment-puppeteer",
         "setupTestFrameworkScriptFile": "expect-puppeteer"
       }
