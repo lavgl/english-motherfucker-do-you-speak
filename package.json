@@ -2,7 +2,7 @@
   "name": "english-motherfucker-do-you-speak",
   "version": "0.1.0",
   "private": true,
-  "homepage": "",
+  "homepage": ".",
   "dependencies": {
     "mobx": "^4.1.0",
     "mobx-react": "^5.0.0",
