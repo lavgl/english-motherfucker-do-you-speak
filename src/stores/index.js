@@ -1,5 +1,5 @@
-import counter from "./counter.store";
+import grid from "./grid.store";
 
 export default {
-  counter,
+  grid,
 };

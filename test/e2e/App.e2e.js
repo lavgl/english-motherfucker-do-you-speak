@@ -35,7 +35,6 @@ describe("App", () => {
   });
 
   it("should allow user to submit the anwser", async () => {
-    expect(await driver.isTimerVisible()).toBeTruthy();
     await driver.submitAnswer();
     expect(await driver.isTimerVisible()).toBeFalsy();
   });
