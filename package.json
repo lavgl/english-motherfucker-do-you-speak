@@ -18,7 +18,7 @@
     "build": "react-app-rewired build",
     "pretest": "npm run build",
     "test": "PORT=3333 jest",
-    "test:watch": "WATCH=true PORT=3000 jest --watch",
+    "test:watch": "WATCH=true PORT=3001 jest --watch",
     "eject": "react-app-rewired eject"
   },
   "devDependencies": {
@@ -35,8 +35,7 @@
     "node-sass": "^4.7.2",
     "prettier": "1.11.1",
     "puppeteer": "^1.2.0",
-    "react-app-rewire-css-modules":
-      "github:codebandits/react-app-rewire-css-modules",
+    "react-app-rewire-css-modules": "github:codebandits/react-app-rewire-css-modules",
     "react-app-rewired": "^1.5.0",
     "sass-loader": "^6.0.7"
   },
@@ -44,7 +43,9 @@
     "projects": [
       {
         "displayName": "jsdom",
-        "testMatch": ["<rootDir>/**/*.spec.js"],
+        "testMatch": [
+          "<rootDir>/**/*.spec.js"
+        ],
         "moduleNameMapper": {
           ".+\\.(svg|css|scss)": "identity-obj-proxy"
         },
@@ -52,7 +53,9 @@
       },
       {
         "displayName": "e2e",
-        "testMatch": ["<rootDir>/test/e2e/**/*.e2e.js"],
+        "testMatch": [
+          "<rootDir>/test/e2e/**/*.e2e.js"
+        ],
         "testEnvironment": "jest-environment-puppeteer",
         "setupTestFrameworkScriptFile": "expect-puppeteer"
       }
