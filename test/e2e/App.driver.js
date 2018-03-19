@@ -1,12 +1,74 @@
 const port = parseInt(process.env.PORT, 10);
 
+export const CELLS_COUNT = 100;
+const CHAR_REGEX = /[a-zA-Z]/;
+
+const getCellSelector = (row, column) => {
+  return `[data-qa=grid-wrapper] tr:nth-child(${row +
+    1}) td:nth-child(${column + 1})`;
+};
+
+const click = elem => elem.click();
+
 class AppDriver {
   open = () => {
-    console.log("url", `http://localhost:${port}`);
     return page.goto(`http://localhost:${port}`);
   };
 
-  isGridVisible = async () => {};
+  isGridVisible = () => {
+    return page.$("[data-qa=grid-wrapper]");
+  };
+
+  getCellsCount = () => {
+    return page.$$eval("[data-qa=grid-cell]", cells => cells.length);
+  };
+
+  areAllCellsFilledWithCharacters = async () => {
+    const fn = (cells, regex, cellsCount) => {
+      return (
+        cells.filter(cell => cell.innerHTML.search(regex)).length === cellsCount
+      );
+    };
+
+    return page.$$eval("[data-qa=grid-cell]", fn, CHAR_REGEX, CELLS_COUNT);
+  };
+
+  clickCellAt = ([row, column]) => {
+    const selector = `${getCellSelector(row, column)} div`;
+    return page.$eval(selector, click);
+  };
+
+  getCellAt = ([row, column]) => {
+    return page.$(getCellSelector(row, column));
+  };
+
+  isCellActive = ([row, column]) => {
+    const selector = `${getCellSelector(row, column)}.active`;
+
+    return page.$(selector);
+  };
+
+  isTimerVisible = async () => {
+    return page.$("[data-qa=timer]");
+  };
+
+  submitAnswer = async () => {
+    return page.$eval("[data-qa=submit-answer]", click);
+  };
+
+  startTimer = () => {
+    return page.$eval("[data-qa=start-timer]", click);
+  };
+
+  doesCellBelongToUser = (user, [row, column]) => {
+    const selector = `${getCellSelector(row, column)}.user_${user}`;
+
+    return page.$(selector);
+  };
+
+  isWinLabelVisible = () => {
+    return page.$("[data-qa=win-label]");
+  };
 }
 
 export default new AppDriver();

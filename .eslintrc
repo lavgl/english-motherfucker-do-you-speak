@@ -1,12 +1,12 @@
 {
   "extends": "react-app",
-  "plugins": [
-    "prettier"
-  ],
+  "plugins": ["prettier"],
   "env": {
     "jest": true
   },
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-return-await": "error",
+    "no-await-in-loop": "error"
   }
 }
