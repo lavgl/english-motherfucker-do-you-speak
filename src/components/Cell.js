@@ -1,6 +1,7 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import classnames from "classnames/bind";
+import noop from "lodash/noop";
 
 const cx = classnames.bind({});
 
@@ -11,9 +12,11 @@ const Cell = props => {
     [props.userClass]: props.used,
   });
 
+  const handleClick = props.used ? noop : props.selectCell;
+
   return (
     <td data-qa="grid-cell" className={className}>
-      <div onClick={props.selectCell}>A</div>
+      <div onClick={handleClick}>A</div>
     </td>
   );
 };
