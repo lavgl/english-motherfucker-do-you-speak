@@ -3,13 +3,18 @@ import { inject, observer } from "mobx-react";
 import classnames from "classnames/bind";
 import noop from "lodash/noop";
 
-const cx = classnames.bind({});
+import styles from "./Cell.module.scss";
+
+const cx = classnames.bind(styles);
 
 const Cell = props => {
-  const className = cx({
-    active: props.isActive,
+  const className = cx(styles.wrapper, {
+    [styles.active]: props.isActive,
     used: props.used,
-    [props.userClass]: props.used,
+  });
+
+  const innnerClassName = cx(styles.inner, {
+    [styles.clickable]: props.available && !props.isActive,
   });
 
   const handleClick =
@@ -19,9 +24,12 @@ const Cell = props => {
     <td
       data-qa={`grid-cell-${props.rowIndex}-${props.columnIndex}`}
       data-user={props.user}
+      data-active={props.isActive}
       className={className}
     >
-      <div onClick={handleClick}>A</div>
+      <div className={innnerClassName} onClick={handleClick}>
+        A
+      </div>
     </td>
   );
 };

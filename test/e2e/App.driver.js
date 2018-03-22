@@ -42,9 +42,11 @@ class AppDriver {
   };
 
   isCellActive = ([row, column]) => {
-    const selector = `${getCellSelector(row, column)}.active`;
+    const selector = getCellSelector(row, column);
 
-    return page.$(selector);
+    return page.$eval(selector, async element => {
+      return element.getAttribute("data-active") === "true";
+    });
   };
 
   isTimerVisible = async () => {
