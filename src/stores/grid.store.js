@@ -9,7 +9,7 @@ class GridStore {
   @observable columns = 10;
   @observable letters = null;
   @observable activeCell = null;
-  @observable cellsUsage = [];
+  @observable usedCells = [];
 
   constructor() {
     this.randomizeGrid();
@@ -20,7 +20,16 @@ class GridStore {
   };
 
   getUsage = cell => {
-    return helpers.getCellUsage(this.cellsUsage, cell);
+    return helpers.getCellUsage(this.usedCells, cell);
+  };
+
+  isCellSelectable = (cell, user) => {
+    return helpers.isCellSelectable({
+      usedCells: this.usedCells,
+      cell,
+      gridSize: { rows: this.rows, columns: this.columns },
+      user,
+    });
   };
 
   @action
@@ -37,8 +46,7 @@ class GridStore {
 
   @action
   saveCellUsage = cellUsage => {
-    console.log("save cell usage", cellUsage);
-    this.cellsUsage.push(cellUsage);
+    this.usedCells.push(cellUsage);
   };
 }
 

@@ -4,8 +4,7 @@ export const CELLS_COUNT = 100;
 const CHAR_REGEX = /[a-zA-Z]/;
 
 const getCellSelector = (row, column) => {
-  return `[data-qa=grid-wrapper] tr:nth-child(${row +
-    1}) td:nth-child(${column + 1})`;
+  return `[data-qa=grid-cell-${row}-${column}]`;
 };
 
 const click = elem => elem.click();
@@ -20,7 +19,7 @@ class AppDriver {
   };
 
   getCellsCount = () => {
-    return page.$$eval("[data-qa=grid-cell]", cells => cells.length);
+    return page.$$eval("[data-qa*=grid-cell]", cells => cells.length);
   };
 
   areAllCellsFilledWithCharacters = async () => {
@@ -30,7 +29,7 @@ class AppDriver {
       );
     };
 
-    return page.$$eval("[data-qa=grid-cell]", fn, CHAR_REGEX, CELLS_COUNT);
+    return page.$$eval("[data-qa*=grid-cell]", fn, CHAR_REGEX, CELLS_COUNT);
   };
 
   clickCellAt = ([row, column]) => {
@@ -61,9 +60,15 @@ class AppDriver {
   };
 
   doesCellBelongToUser = (user, [row, column]) => {
-    const selector = `${getCellSelector(row, column)}.user_${user}`;
+    const selector = getCellSelector(row, column);
 
-    return page.$(selector);
+    return page.$eval(
+      selector,
+      async (element, user) => {
+        return parseInt(element.getAttribute("data-user"), 10) === user;
+      },
+      user,
+    );
   };
 
   isWinLabelVisible = () => {

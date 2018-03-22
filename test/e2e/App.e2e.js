@@ -1,7 +1,11 @@
 import driver, { CELLS_COUNT } from "./App.driver";
 
+// page.on("console", msg => {
+//   console.log("[browser]:", msg);
+// });
+
 describe("App", () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     await driver.open();
   });
 
@@ -29,17 +33,22 @@ describe("App", () => {
   });
 
   it("should allow user to start timer", async () => {
+    await driver.clickCellAt([0, 0]);
     expect(await driver.isTimerVisible()).toBeFalsy();
     await driver.startTimer();
     expect(await driver.isTimerVisible()).toBeTruthy();
   });
 
   it("should allow user to submit the anwser", async () => {
+    await driver.startTimer();
     await driver.submitAnswer();
     expect(await driver.isTimerVisible()).toBeFalsy();
   });
 
   it("previosly selected cell should be assigned to user", async () => {
+    await driver.clickCellAt([0, 0]);
+    await driver.startTimer();
+    await driver.submitAnswer();
     expect(await driver.doesCellBelongToUser(0, [0, 0])).toBeTruthy();
   });
 

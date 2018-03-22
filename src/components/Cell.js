@@ -12,10 +12,15 @@ const Cell = props => {
     [props.userClass]: props.used,
   });
 
-  const handleClick = props.used ? noop : props.selectCell;
+  const handleClick =
+    props.used || props.available === false ? noop : props.selectCell;
 
   return (
-    <td data-qa="grid-cell" className={className}>
+    <td
+      data-qa={`grid-cell-${props.rowIndex}-${props.columnIndex}`}
+      data-user={props.user}
+      className={className}
+    >
       <div onClick={handleClick}>A</div>
     </td>
   );
@@ -29,6 +34,7 @@ const injector = ({ grid }, props) => {
 
   const isActive = grid.isCellActive(cell);
   const usage = grid.getUsage(cell);
+  const available = grid.isCellSelectable(cell, 0);
 
   const used = !!usage;
   const userClass = used ? `user_${usage.user}` : null;
@@ -39,6 +45,8 @@ const injector = ({ grid }, props) => {
     selectCell: () => grid.selectCell(props.rowIndex, props.columnIndex),
     used,
     userClass,
+    available,
+    user: usage && usage.user,
   };
 };
 
