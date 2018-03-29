@@ -1,4 +1,4 @@
-import { observable, action, computed, autorun } from "mobx";
+import { observable, action, computed } from "mobx";
 
 import { Timer } from "../lib/Timer";
 
