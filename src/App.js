@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import merge from "lodash/merge";
 
 import Grid from "./components/Grid";
+import Panel from "./components/Panel";
 
 class App extends Component {
   state = {
@@ -35,16 +36,12 @@ class App extends Component {
     return (
       <div>
         <Grid />
-        <button data-qa="start-timer" onClick={this.toggleTimerActivity}>
-          Start
-        </button>
-        {this.state.isTimerActive ? <div data-qa="timer">0:15</div> : null}
-        <button data-qa="submit-answer" onClick={this.submitAnswer}>
-          Correct
-        </button>
-        {this.state.isGameFinished ? (
-          <div data-qa="win-label">player 1 win</div>
-        ) : null}
+        <Panel
+          toggleTimerActivity={this.toggleTimerActivity}
+          isTimerActive={this.state.isTimerActive}
+          submitAnswer={this.submitAnswer}
+          isGameFinished={this.state.isGameFinished}
+        />
       </div>
     );
   }
